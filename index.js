@@ -2,11 +2,13 @@ for (var i = 0; i < document.querySelectorAll(".item").length; i++) {
 
     document.querySelectorAll(".item")[i].addEventListener("click", function() {
         sound(this.innerHTML);
+        pressAnimation(this.innerHTML);
     });
 }
 
 document.addEventListener("keypress", function(event) {
     sound(event.key);
+    pressAnimation(event.key);
 })
 
 
@@ -41,4 +43,12 @@ function sound(key) {
             audio.play();
             break;
     }
+}
+
+function pressAnimation(key) {
+    document.querySelector("." + key).classList.add("pressed");
+    setTimeout(() => {
+        document.querySelector("." + key).classList.remove("pressed");
+    }, 100);
+
 }
